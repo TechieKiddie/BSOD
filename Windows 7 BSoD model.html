@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BSoD Model</title>
+<style>
+html {cursor: none;}
+
+body {
+  margin: 25px;
+  font-family: Consolas;
+  color: white;
+  background-color: navy;
+}
+
+::selection {
+  display: none;
+}
+
+p {margin: 0px;}
+</style>
+</head>
+<body>
+<p style="margin-bottom: 20px;">A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+<p style="margin-bottom: 20px;">The problem seems to be caused by the following file: ntoskrnl.exe</p>
+<p style="margin-bottom: 20px;">CRITICAL_PROCESS_DIED</p>
+<p style="margin-bottom: 20px;">If this is the first time you've seen this error screen, restart your computer. If this screen appears again, follow these steps:</p>
+<p style="margin-bottom: 20px;">Check to make sure any new hardware or software is installed properly. If this is a new installation, ask your hardware or software manufactor for any Windows updates you might need.</p>
+<p style="margin-bottom: 20px;">If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options such as chaching or shadowing. If you need to use Safe Mode to remove or disable components, restart your computer, press F8 to select Advanced Startup Options, and then select Safe Mode. 
+<p style="margin-bottom: 20px;">Technical Information:</p>
+<p style="margin-bottom: 20px;">*** STOP: 0x000000ef (0xffffe001dbfd2840, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000)</p>
+<p style="margin-bottom: 40px;">*** ntoskrnl.exe - Address 0xfffff8025a3cf760 base at 0xfffff8025a28d000 DateStamp 0x565189c8</p>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<p id="p5"></p>
+<script>
+var p1 = document.getElementById("p1");
+var p2 = document.getElementById("p2");
+var p3 = document.getElementById("p3");
+var p5 = document.getElementById("p5");
+var percentageElement = document.getElementById("p4");
+var percentage = 0;
+setTimeout(function() {p1.innerHTML = "Collecting data for crash dump ...";}, 500);
+setTimeout(function() {p2.innerHTML = "Initializing disk for crash dump ...";}, 1500);
+setTimeout(function() {p3.innerHTML = "Beginning dump of physical memory.";}, 3500);
+setTimeout(function() {p4.innerHTML = "Dumping physical memory to disk: 0"; processInterval();}, 4000);
+function process() {
+  percentage += parseInt(Math.random() * 10);
+  if (percentage >= 100) {
+    percentage = 100;
+    p5.innerHTML = "Contact your system admin or technical support group for further assistance.";
+  }
+  percentageElement.innerText = "Dumping physical memory to disk: " +  percentage;
+  processInterval();
+}
+function processInterval() {
+  setTimeout(process, Math.random() * (1000 - 500) + 1000)
+}
+</script>
+</body>
+</html>
